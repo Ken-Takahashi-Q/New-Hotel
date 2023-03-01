@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Real-time Chat using Firebase</title>
+	<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-database.js"></script>
+
+	<script>
+		var firebaseConfig = {
+            apiKey: "AIzaSyDON7Nv3EoLPDIQanVTN5YeXq8Q13PoQ2U",
+            authDomain: "alto-hotel.firebaseapp.com",
+            databaseURL: "https://alto-hotel-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "alto-hotel",
+            storageBucket: "alto-hotel.appspot.com",
+            messagingSenderId: "291022622615",
+            appId: "1:291022622615:web:2b39bf8ea2dbc6526cbed2",
+            measurementId: "G-6Z9CPTPZ66"
+		};
+		firebase.initializeApp(firebaseConfig);
+		var database = firebase.database();
+	</script>
+
+	<style>
+		.chat {
+			height: 400px;
+			overflow-y: scroll;
+		}
+	</style>
+</head>
+<body>
+	<div class="chat">
+		<ul id="message-list"></ul>
+	</div>
+	<input type="text" id="message-input">
+	<button id="send-button">Send</button>
+
+	<script>
+		var messageList = document.getElementById("message-list");
+		var messageInput = document.getElementById("message-input");
+		var sendButton = document.getElementById("send-button");
+
+		sendButton.addEventListener("click", function() {
+			var messageText = messageInput.value;
+			if (messageText.trim() !== "") {
+				database.ref("messages").push({
+					message: messageText
+				});
+				messageInput.value = "";
+			}
+		});
+
+		database.ref("messages").on("child_added", function(snapshot) {
+			var message = snapshot.val().message;
+			var li = document.createElement("li");
+			li.textContent = message;
+			messageList.appendChild(li);
+		});
+	</script>
+</body>
+</html>

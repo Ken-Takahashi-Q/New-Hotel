@@ -1,7 +1,8 @@
 import Head from 'next/head'
-import React, { useState, useContext  } from 'react';
+import React, { useState, useEffect  } from 'react';
 import styles from '@/styles/Home.module.css'
 import ImageGallery from './gallery';
+import Chat from './chat'
 
 export default function Home() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -185,13 +186,12 @@ export default function Home() {
 
 		<div className={`${chatOpen ? 'flex flex-col justify-between absolute top-0 w-full h-screen bg-gray' :
 									'hidden'}`}>	
-			<div className='h-10 w-10 m-4 bg-[#326BFF] rounded-[50%] border-[none]'>
-				<button className="h-full" onClick={handleChatClick}>
-					<img className="h-full"
-						src="Icon-close.png" alt="close"/>
-				</button>
-			</div>
-			<input className='h-6 m-2 p-4 border border-solid border-[gray] rounded-lg text-base text-[#979FA7]' type="text" placeholder='Text a message'/>
+			<button className="absolute top-0 left-0 h-[48px] bg-[#326BFF] m-4 p-1 rounded-3xl z-[100]" onClick={handleChatClick}>
+				<img className="h-full"
+					src="Icon-close.png" alt="close"/>
+			</button>
+			<Chat />
+			
 		</div>
 	</div>
   )
