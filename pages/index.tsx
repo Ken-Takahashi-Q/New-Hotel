@@ -22,7 +22,7 @@ export default function Home() {
 			<link rel="icon" />
 		</Head>
 
-		<main className="w-full h-screen overflow-x-hidden;">
+		<main className="flex flex-col w-full h-screen overflow-x-hidden;">
 
 		{/* Menu left side */}
 		<div className={`${isOpen ? 'absolute top-0 left-0 transition-transform duration-[0.3s] ease-[ease-out] bg-[rgba(33, 37, 41, 0.5)]' :
@@ -103,12 +103,6 @@ export default function Home() {
 							<hr style={{ width: '100%', height: '4px', border: 0, background: '#000' }} />
 							<p className='font-normal text-white text-[8px];'>Hotel</p>
 						</div>
-
-						<div className="flex mt-[-0.5rem] items-center">
-							<hr className="flex-grow border-2 border-t border-red-500 mx-2" />
-							<p className='font-normal text-white text-[8px]'>Hotel</p>
-							<hr className="flex-grow border-2 border-t border-red-500 mx-6" />
-						</div>
 					</div>
 				</div>
 
@@ -167,10 +161,10 @@ export default function Home() {
 				</a>
 
 				<a href="" className="bg-[#D9D9D9] h-[200px] p-2 rounded-lg border-[none] flex flex-col justify-end">
-					<p>Room Service</p>
+					<p>Service 3</p>
 				</a>
 				<a href="" className="bg-[#D9D9D9] h-[200px] p-2 rounded-lg border-[none] flex flex-col justify-end">
-					<p>Room Service</p>
+					<p>Service 4</p>
 				</a>
 			</div>
 			</div>
@@ -182,16 +176,17 @@ export default function Home() {
 			</button>
 
 		</div>
+
 		</main>
 
-		<div className={`${chatOpen ? 'flex flex-col justify-between absolute top-0 w-full h-screen bg-gray' :
+		<div className={`${chatOpen ? 'flex flex-col justify-between w-full overflow-hidden slide-up transition-all duration-[0.5s] ease-[ease-in-out]' :
 									'hidden'}`}>	
-			<button className="absolute top-0 left-0 h-[48px] bg-[#326BFF] m-4 p-1 rounded-3xl z-[100]" onClick={handleChatClick}>
+			<button className="absolute top-0 left-0 h-[48px] bg-gray-400 m-4 p-1 rounded-3xl z-[100]" onClick={handleChatClick}>
 				<img className="h-full"
 					src="Icon-close.png" alt="close"/>
 			</button>
+
 			<Chat />
-			
 		</div>
 	</div>
   )
